@@ -19,8 +19,8 @@ The `MAD` project is based on a pcb with an [ATtiny406](#additional-information)
 | Drill | [pdf](https://github.com/0x007E/mad/releases/latest/download/drill.pdf) | Drill file |
 | Gerber | [zip](https://github.com/0x007E/mad/releases/latest/download/kicad.zip) / [tar](https://github.com/0x007E/mad/releases/latest/download/kicad.tar.gz) | Gerber/Drill files |
 | Housing, PCB | [zip](https://github.com/0x007E/mad/releases/latest/download/freecad.zip) / [tar](https://github.com/0x007E/mad/releases/latest/download/freecad.tar.gz) | Housing and PCB (STEP) files     |
-| Firmware | [zip](https://github.com/0x007E/exc/releases/latest/download/firmware.zip) / [tar](https://github.com/0x007E/exc/releases/latest/download/firmware.tar.gz) | Firmware for ATtiny406 (Display) |
-| Firmware (demo) | [zip](https://github.com/0x007E/exc/releases/latest/download/firmware_demo.zip) / [tar](https://github.com/0x007E/exc/releases/latest/download/firmware_demo.tar.gz) | Test application(s) for ATmega16a |
+| Firmware | [zip](https://github.com/0x007E/mad/releases/latest/download/firmware.zip) / [tar](https://github.com/0x007E/mad/releases/latest/download/firmware.tar.gz) | Firmware for ATtiny406 (Display) |
+| Firmware (demo) | [zip](https://github.com/0x007E/mad/releases/latest/download/firmware-demo.zip) / [tar](https://github.com/0x007E/mad/releases/latest/download/firmware-demo.tar.gz) | Test application(s) for ATmega16a |
 
 # Hardware
 
