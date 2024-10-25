@@ -82,7 +82,7 @@ jobs:
     env:
       TOOLCHAIN: "3.7.0.1796"
       DFP: "ATmega_DFP.2.2.509"
-      DEVICE: "t406"
+      DEVICE: "attiny406"
       OutputFolder: "./output"
       FirmwareName: "MAD_FW_1_0"
     runs-on: ubuntu-latest
