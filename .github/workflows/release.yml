@@ -106,16 +106,16 @@ jobs:
 
           libraries=""
 
-          for dir in ./firmware/lib/${{ env.FirmwareName }}/*/
+          for dir in ./firmware/${{ env.FirmwareName }}/*/
           do
               name=${dir%*/}
               echo "Building ${name##*/}"
 
-              first_file=$(ls ./firmware/lib/${name##*/}/*.c| head -1)
+              first_file=$(ls ./firmware/${{ env.FirmwareName }}/${name##*/}/*.c| head -1)
               filename=$(basename -- "$first_file")
               filename="${filename%.*}"
 
-              ./avr8-gnu-toolchain-linux_x86_64/bin/avr-gcc -g -x c -O1 -mmcu=${{ env.DEVICE }} -std=gnu99 -B ./DFP/gcc/dev/${{ env.DEVICE }} -I ./DFP/include -c ./firmware/lib/${name##*/}/${filename}.c -o ./temp/${filename}.o
+              ./avr8-gnu-toolchain-linux_x86_64/bin/avr-gcc -g -x c -O1 -mmcu=${{ env.DEVICE }} -std=gnu99 -B ./DFP/gcc/dev/${{ env.DEVICE }} -I ./DFP/include -c ./firmware/${{ env.FirmwareName }}/${name##*/}/${filename}.c -o ./temp/${filename}.o
 
               libraries+="./temp/${filename}.o "
           done
