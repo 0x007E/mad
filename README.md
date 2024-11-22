@@ -2,7 +2,7 @@
 
 # `MAD` - Matrix Display
 
-The `MAD` project is based on a pcb with an [ATtiny406](#additional-information) and a [Matrix LED Display](#additional-information). It can be used to display data sent over `SPI` or `UART`. The display also implements a small amount of characters from the ASCII table and also has internal space (`EEPROM`) for 16 special characters that can be programmed.
+The `MAD` project is based on a pcb with an [ATtiny406/ATtiny1606](#additional-information) and a [Matrix LED Display](#additional-information). It can be used to display data sent over `SPI` or `UART`. The display also implements a small amount of characters from the ASCII table and also has internal space (`EEPROM`) for 16 special characters that can be programmed.
 
 | Experience | Level |
 |:------------|:-----:|
@@ -19,7 +19,7 @@ The `MAD` project is based on a pcb with an [ATtiny406](#additional-information)
 | Drill | [pdf](https://github.com/0x007E/mad/releases/latest/download/drill.pdf) | Drill file |
 | Gerber | [zip](https://github.com/0x007E/mad/releases/latest/download/kicad.zip) / [tar](https://github.com/0x007E/mad/releases/latest/download/kicad.tar.gz) | Gerber/Drill files |
 | Housing, PCB | [zip](https://github.com/0x007E/mad/releases/latest/download/freecad.zip) / [tar](https://github.com/0x007E/mad/releases/latest/download/freecad.tar.gz) | Housing and PCB (STEP) files     |
-| Firmware | [zip](https://github.com/0x007E/mad/releases/latest/download/firmware.zip) / [tar](https://github.com/0x007E/mad/releases/latest/download/firmware.tar.gz) | Firmware for ATtiny406 (Display) |
+| Firmware | [zip](https://github.com/0x007E/mad/releases/latest/download/firmware.zip) / [tar](https://github.com/0x007E/mad/releases/latest/download/firmware.tar.gz) | Firmware for ATtiny406/ATtiny1606 (Display) |
 | Firmware (demo) | [zip](https://github.com/0x007E/mad/releases/latest/download/firmware-demo.zip) / [tar](https://github.com/0x007E/mad/releases/latest/download/firmware-demo.tar.gz) | Test application(s) for ATmega16a |
 
 # Hardware
@@ -67,11 +67,11 @@ The `MAD` is powerd with `5V` from an external source. With Jumper `JP1` bridged
 | `APPEND`  | `0x00` |
 | `BOOTEND` | `0x00` |
 
-> To setup `SW1` as `RESET` (`PA0`) it is necessary to change the `SYSCFG0`-FUSE of the `ATtiny406`. WARNING: To reset the `PA0` pin to `UPDI` mode a `12V` impulse is necessary to program the FUSES again.
+> To setup `SW1` as `RESET` (`PA0`) it is necessary to change the `SYSCFG0`-FUSE of the `ATtiny406/ATtiny1606`. WARNING: To reset the `PA0` pin to `UPDI` mode a `12V` impulse is necessary to program the FUSES again.
 
 # Software
 
-The display software can be controlled by `SPI` or `UART`. Take interfaces are displayed in the [dataflow](#dataflow-diagram) diagram. There is a demo software to use the display directly over `spi` (`MAD_Test`) or a `library` (`MAD_LIB`).
+The display software can be controlled by `SPI` or `UART`. The interfaces are displayed in the [dataflow](#dataflow-diagram) diagram. There is a demo software to use the display directly over `spi` (`MAD_Test`) or a `library` (`MAD_LIB`).
 
 ## Dataflow diagram
 
@@ -220,7 +220,8 @@ int main(void)
 
 | Type       | Link               | Description              |
 |:----------:|:------------------:|:-------------------------|
-| ATtiny406 | [pdf](https://ww1.microchip.com/downloads/en/DeviceDoc/Microchip%208bit%20mcu%20AVR%20ATtiny406%20data%20sheet%2040001976A.pdf) | ATtiny microcontroller |
+| ATtiny406  | [pdf](https://ww1.microchip.com/downloads/en/DeviceDoc/Microchip%208bit%20mcu%20AVR%20ATtiny406%20data%20sheet%2040001976A.pdf) | ATtiny microcontroller |
+| ATtiny1606 | [pdf](http://ww1.microchip.com/downloads/en/DeviceDoc/ATtiny806_1606_Data_Sheet_40002029A.pdf) | ATtiny microcontroller |
 | ATmega16A | [pdf](https://ww1.microchip.com/downloads/en/devicedoc/atmel-8154-8-bit-avr-atmega16a_datasheet.pdf) | Microchip ATmega16A Datasheet |
 | TA20-11SRWA | [pdf](https://www.kingbrightusa.com/images/catalog/spec/ta20-11srwa.pdf) | Dot Matrix Dispaly |
 | Atmel ICE | [pdf](https://ww1.microchip.com/downloads/en/DeviceDoc/Atmel-ICE_UserGuide.pdf) | Atmel ICE datasheet |
