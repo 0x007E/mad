@@ -216,7 +216,7 @@
         (effects (font (size 1.4 1.4) (thickness 0.15)))
       (tstamp b694c968-8802-427b-9327-614262458cc3)
     )
-    (fp_text value "TA20-11SRWA" (at -13.165 20.889 90) (layer "F.Fab")
+    (fp_text value "TA20-11SRWA" (at -25.141 0.035 180) (layer "F.Fab")
         (effects (font (size 1.4 1.4) (thickness 0.15)))
       (tstamp 50fcf396-286a-4f9b-bdfd-659afb89cd7f)
     )
