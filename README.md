@@ -52,7 +52,7 @@ The housing has a tolerance of `0.2mm` on each side of the case. So the pcb shou
 
 # Programming/Setup
 
-The `MAD` is powerd with `5V` from an external source. With Jumper `JP1` bridged the `MAD` can be programmed over [UPDI](#additional-information). To enable `UART` mode the `SS (CS)` Pin must be held low (more details on the [dataflow](#dataflow-diagram) diagram) otherwise the `SPI` mode is enabled. In `UART` mode only one display can be driven. The `MOSI` pin gets `TXD`and the `MISO` pin gets `RXD`. The firmware for the display can be downloaded (see the [download section](#downloads)).
+The `MAD` is powerd with `5V` from an external source. With Jumper `JP1` bridged the `MAD` can be programmed over [UPDI](#additional-information). To enable `UART` mode the `SS (CS)` Pin must be held low (more details on the [dataflow](#dataflow-diagram) diagram) otherwise the `SPI` mode is enabled. In `UART` mode only one display can be driven. The `SI` pin gets `TXD`and the `SO` pin gets `RXD`. The firmware for the display can be downloaded (see the [download section](#downloads)).
 
 ## FUSES
 
@@ -99,7 +99,7 @@ To send characters to the display over `UART` connect an USB/UART converter to t
 #    +-+-+                 +-+-+                            | +-----------------+ |
 #    | 1 | VCC         VCC | 1 |          +----------+      | | TeraTerm        | |
 #    | 2 | UPDI       UPDI | 2 |          |   U  +---+---+  | | ~~~~~~~~        | |
-# +--+ 3 | MOSI       MISO | 3 +-----+    |   S  |  USB  |--+ | ~~~~~           | |
+# +--+ 3 | SI           SO | 3 +-----+    |   S  |  USB  |--+ | ~~~~~           | |
 # |  | 4 | SCK         SCK | 4 |     |    |   B  +---+---+  | | ~~~~~~~~~~~~    | |
 # |  | 5 | SS (CS)      SS | 5 +--+  |    |   /      |      | |                 | |
 # |  | 6 | GND         GND | 6 +--+  |    |   U      |      | +-----------------+ |
@@ -123,7 +123,7 @@ The `firmware` itself contains some demos how to use the display over `spi`. The
 # ~  A       +-+-+              +-+-+                 +-+-+
 # ~  T   [7] | P +- SCK -+      | 1 | VCC         VCC | 1 |
 # ~  M       | O |        \     | 2 | UPDI       UPDI | 2 |
-# ~  E       | R +- MOSI --\----+ 3 | MOSI       MISO | 3 |
+# ~  E       | R +- MOSI --\----+ 3 | SI           SO | 3 |
 # ~  G       | T +-- SS -+  +---+ 4 | SCK         SCK | 4 |
 # ~  A       | B |       +------+ 5 | SS (CS)      SS | 5 |
 # ~          |   |              | 6 | GND         GND | 6 |
