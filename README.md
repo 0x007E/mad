@@ -175,6 +175,7 @@ To enable a bit it needs to be set to on ($1=ON$). To disable a bit it is necess
 | ...          | ...        | ... | 
 | `0x07`       | `[4:0]`    | ROW7 LEDs | 
 | `0x08`       | `[6:0]`    | Show ASCII character on display |
+| `0x10`       | `[6:0]`    | Clear buffer |
 | `0x1F`       | `[0]`      | Enable display |
 | `0x20`       | `0xXX`     | Copy EEPROM address (0) to display |
 | ...          | ...        | ... | 
