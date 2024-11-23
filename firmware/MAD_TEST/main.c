@@ -84,7 +84,7 @@ int main(void)
             _delay_us(100);
         }
         spi_select(SPI_Disable);
-        _delay_ms(1);
+        _delay_ms(1000);
     }
 }
 
