@@ -101,9 +101,9 @@ void matrix_frame(unsigned char* buffer)
         for (unsigned char x=MATRIX_DISPLAYS; x > 0; x--)
         {
             spi_transfer(y);
-            _delay_us(10);
+            _delay_us(MATRIX_TRANSFER_DELAY_US);
             spi_transfer(buffer[(((x - 1) * MATRIX_ROWS) + (y - 1))]);
-            _delay_us(10);
+            _delay_us(MATRIX_TRANSFER_DELAY_US);
         }
         spi_select(SPI_Disable);
     }
