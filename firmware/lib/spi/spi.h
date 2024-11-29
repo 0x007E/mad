@@ -24,9 +24,9 @@
 // !!! SPI clock f_CPU > 4 * f_SPI   !!! 
 // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! 
 
-#ifndef SPI2X       // Double speed mode
-    #define SPI2X
-#endif
+//#ifndef SPI2X       // Double speed mode
+    //#define SPI2X
+//#endif
 
 #ifndef SPI_CLOCK   // SPI_Master shift clock
     // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
