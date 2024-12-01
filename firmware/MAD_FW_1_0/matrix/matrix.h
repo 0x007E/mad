@@ -87,6 +87,10 @@
         #define MATRIX_DOTS_Y 7
     #endif
 
+    #ifndef MATRIX_TEST_DELAY_MS
+        #define MATRIX_TEST_DELAY_MS 20
+    #endif
+
     #ifndef MATRIX_DISPLAY_BUFFER_LENGTH
         #define MATRIX_DISPLAY_BUFFER_LENGTH MATRIX_DOTS_Y
     #endif

@@ -16,6 +16,7 @@
 #define SIGNAL_LED PIN5_bm
 
 #define BAUDRATE 9600UL
+#define UART_INIT_WAIT_MS 1000UL
 // #define USE_U2X
 
 #ifdef USE_U2X
@@ -84,7 +85,7 @@ int main(void)
     if(!(PORTA.IN & PIN4_bm))
     {
         PORTA.OUTSET = SIGNAL_LED;
-        _delay_ms(1000);
+        _delay_ms(UART_INIT_WAIT_MS);
 
         PORTMUX.CTRLB = PORTMUX_USART0_ALTERNATE_gc;
         
@@ -93,7 +94,7 @@ int main(void)
         USART0.CTRLB = USART_RXEN_bm;
         
         #if USE_U2X
-        USART0.CTRLB |= USART_RXMODE_CLK2X_gc;
+            USART0.CTRLB |= USART_RXMODE_CLK2X_gc;
         #endif
 
         MATRIX_ENABLE();

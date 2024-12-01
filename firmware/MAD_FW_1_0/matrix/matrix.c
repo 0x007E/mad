@@ -585,7 +585,8 @@ static void matrix_clear_buffer(void)
 void matrix_test()
 {
     matrix_clear_buffer();
-    _delay_ms(100);
+    _delay_ms((MATRIX_TEST_DELAY_MS<<2));
+
     MATRIX_ENABLE();
 
     for (unsigned char y=0; y < MATRIX_DOTS_Y; y++)
@@ -593,12 +594,12 @@ void matrix_test()
         for (unsigned char x=0; x < MATRIX_DOTS_X; x++)
         {
             matrix_display_buffer[y] |= (1<<x);
-            _delay_ms(25);
+            _delay_ms((MATRIX_TEST_DELAY_MS<<2));
         }
     }
     
     matrix_clear_buffer();
-    _delay_ms(100);
+    _delay_ms((MATRIX_TEST_DELAY_MS<<2));
 
     MATRIX_DISABLE();
 }
@@ -677,7 +678,7 @@ static void matrix_eeprom2buffer(unsigned char address, volatile unsigned char *
 
     unsigned char temp[MATRIX_DOTS_X];
     
-    eeprom_read_block(temp, (unsigned char*)(((0x0F & address) * 7) + address), sizeof(temp));
+    eeprom_read_block(temp, (unsigned char*)(((0x0F & address) * MATRIX_DOTS_Y) + address), sizeof(temp));
     matrix_array2buffer(temp, buffer);
 }
 
@@ -713,7 +714,7 @@ static void matrix_buffer2eeprom(unsigned char address, volatile unsigned char *
     
     matrix_clear_buffer();
     
-    eeprom_write_block(temp, (unsigned char*)(((0x0F & address) * 7) + address), sizeof(temp));
+    eeprom_write_block(temp, (unsigned char*)(((0x0F & address) * MATRIX_DOTS_Y) + address), sizeof(temp));
     _delay_ms(MATRIX_EEPROM_WRITE_DELAY_MS);
 }
 
