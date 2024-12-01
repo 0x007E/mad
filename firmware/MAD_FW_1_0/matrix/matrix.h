@@ -134,10 +134,9 @@
     #define MATRIX_REFRESH_RATE(rate) (TCA0.SINGLE.PER = rate)
 
     void matrix_setup(void);
-    void matrix_column(volatile unsigned char column);
-    void matrix_row(volatile unsigned char row);
+    void matrix_refresh(void);
     void matrix_test(void);
-    
+
     volatile unsigned char matrix_queue(volatile unsigned char data);
     void matrix_execute(void);
 

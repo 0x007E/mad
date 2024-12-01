@@ -493,7 +493,7 @@ static void matrix_row_clear()
     PORTC.OUTCLR = MATRIX_PINC_DR2 | MATRIX_PINC_DR3;
 }
 
-void matrix_row(volatile unsigned char row)
+static void matrix_row(volatile unsigned char row)
 {
     matrix_row_clear();
 
@@ -533,7 +533,7 @@ static void matrix_column_clear()
 
 volatile unsigned char matrix_display_buffer[MATRIX_DISPLAY_BUFFER_LENGTH];
 
-void matrix_column(volatile unsigned char row)
+static void matrix_column(volatile unsigned char row)
 {
     matrix_column_clear();
 
@@ -558,6 +558,19 @@ void matrix_column(volatile unsigned char row)
     if(column & (0x10))
     {
         PORTB.OUTCLR = MATRIX_PINB_DC5;
+    }
+}
+
+volatile unsigned char matrix_row_position;
+
+void matrix_refresh(void)
+{
+    matrix_column(matrix_row_position);
+    matrix_row(matrix_row_position);
+
+    if((++matrix_row_position) >= MATRIX_DOTS_Y)
+    {
+        matrix_row_position = 0;
     }
 }
 

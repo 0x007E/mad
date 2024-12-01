@@ -3,7 +3,7 @@
 * www.sunriax.at
 * -----------------------------------------
 *    Platform: .matrix display controller
-*    Hardware: ATtiny406
+*    Hardware: ATTiny406/1606/...
 * -----------------------------------------
 *     Version: 1.0 Release
 *      Author: G.Raf
@@ -30,8 +30,6 @@
 
 #include "./system/system.h"
 #include "./matrix/matrix.h"
-
-volatile unsigned char row;
 
 ISR(SPI0_INT_vect)
 {
@@ -62,13 +60,7 @@ ISR(PORTA_PORT_vect)
 
 ISR(TCA0_OVF_vect)
 {   
-    matrix_column(row);
-    matrix_row(row);
-
-    if((++row) >= 7)
-    {
-        row = 0;
-    }
+    matrix_refresh();
 
     TCA0.SINGLE.INTFLAGS = TCA_SINGLE_OVF_bm;
 }
