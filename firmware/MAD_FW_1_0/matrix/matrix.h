@@ -19,10 +19,6 @@
         #define F_CPU 20000000UL
     #endif
 
-    #ifndef MATRIX_PINA_LED
-        #define MATRIX_PINA_LED PIN5_bm
-    #endif
-
     #ifndef MATRIX_PINB_DR1
         #define MATRIX_PINB_DR1 PIN0_bm
         #define MATRIX_PINB_DR1_CTRL PIN0CTRL

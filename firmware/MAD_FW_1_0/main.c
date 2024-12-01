@@ -13,6 +13,7 @@
 */
 
 #define F_CPU 20000000UL
+#define SIGNAL_LED PIN5_bm
 
 #define BAUDRATE 9600UL
 // #define USE_U2X
@@ -22,6 +23,7 @@
 #else
     #define USART0_BAUD_RATE(BAUD_RATE) ((float)(F_CPU * 64 / (16 * (float)BAUD_RATE)) + 0.5)
 #endif
+
 
 #include <avr/io.h>
 #include <avr/cpufunc.h>
@@ -42,7 +44,7 @@ ISR(USART0_RXC_vect)
 {
     sei();	// Allow nested interrupts
 
-    PORTA.OUTTGL = MATRIX_PINA_LED;
+    PORTA.OUTTGL = SIGNAL_LED;
     USART0.STATUS = USART_RXCIF_bm;
 }
 
@@ -51,7 +53,7 @@ ISR(PORTA_PORT_vect)
     sei();	// Allow nested interrupts
 
     // DATA transfer LED
-    PORTA.OUTTGL = MATRIX_PINA_LED;
+    PORTA.OUTTGL = SIGNAL_LED;
 
     matrix_execute();
 
@@ -73,13 +75,15 @@ int main(void)
     PORTA.DIRCLR = PIN4_bm;				// Set SS to input
     PORTA.PIN4CTRL = PORT_PULLUPEN_bm;	// Enable pullup on SS
     
+    PORTA.DIRSET = SIGNAL_LED;          // Enable signal LED
+
     // DISPLAY Update
     matrix_setup();
 
     // UART Setup
     if(!(PORTA.IN & PIN4_bm))
     {
-        PORTA.OUTSET = MATRIX_PINA_LED;
+        PORTA.OUTSET = SIGNAL_LED;
         _delay_ms(1000);
 
         PORTMUX.CTRLB = PORTMUX_USART0_ALTERNATE_gc;
