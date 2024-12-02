@@ -19,13 +19,6 @@
 #define UART_INIT_WAIT_MS 1000UL
 // #define USE_U2X
 
-#ifdef USE_U2X
-    #define USART0_BAUD_RATE(BAUD_RATE) ((float)(F_CPU * 64 / (8 * (float)BAUD_RATE)) + 0.5)
-#else
-    #define USART0_BAUD_RATE(BAUD_RATE) ((float)(F_CPU * 64 / (16 * (float)BAUD_RATE)) + 0.5)
-#endif
-
-
 #include <avr/io.h>
 #include <avr/cpufunc.h>
 #include <avr/interrupt.h>
@@ -33,6 +26,12 @@
 
 #include "./system/system.h"
 #include "./matrix/matrix.h"
+
+#ifdef USE_U2X
+    #define USART0_BAUD_RATE(BAUD_RATE) ((float)(CLK_PER * 64 / (8 * (float)BAUD_RATE)) + 0.5)
+#else
+    #define USART0_BAUD_RATE(BAUD_RATE) ((float)(CLK_PER * 64 / (16 * (float)BAUD_RATE)) + 0.5)
+#endif
 
 ISR(SPI0_INT_vect)
 {
@@ -44,6 +43,10 @@ ISR(SPI0_INT_vect)
 ISR(USART0_RXC_vect)
 {
     sei();	// Allow nested interrupts
+    
+    matrix_queue(0x08);
+    matrix_queue(USART0.RXDATAL);
+    matrix_execute();
 
     PORTA.OUTTGL = SIGNAL_LED;
     USART0.STATUS = USART_RXCIF_bm;
@@ -62,7 +65,7 @@ ISR(PORTA_PORT_vect)
 }
 
 ISR(TCA0_OVF_vect)
-{   
+{
     matrix_refresh();
 
     TCA0.SINGLE.INTFLAGS = TCA_SINGLE_OVF_bm;
@@ -81,6 +84,11 @@ int main(void)
     // DISPLAY Update
     matrix_setup();
 
+    // Enable interrupts globally
+    sei();
+
+    matrix_test();
+
     // UART Setup
     if(!(PORTA.IN & PIN4_bm))
     {
@@ -94,7 +102,7 @@ int main(void)
         USART0.CTRLB = USART_RXEN_bm;
         
         #if USE_U2X
-            USART0.CTRLB |= USART_RXMODE_CLK2X_gc;
+        USART0.CTRLB |= USART_RXMODE_CLK2X_gc;
         #endif
 
         MATRIX_ENABLE();
@@ -111,11 +119,6 @@ int main(void)
         SPI0.CTRLA = SPI_ENABLE_bm;
         SPI0.INTCTRL = SPI_IE_bm;
     }
-    
-    // Enable interrupts globally
-    sei();
-
-    matrix_test();
     
     while (1)
     {

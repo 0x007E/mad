@@ -46,6 +46,12 @@
         #define SYSTEM_PER_CLOCK_PRESCALER CLKCTRL_PDIV_2X_gc
     #endif
 
+    #ifndef SYSTEM_PER_CLOCK_PRESCALER
+        CLK_PER F_CPU
+    #else
+        #define CLK_PER (F_CPU>>(1 + SYSTEM_PER_CLOCK_PRESCALER))
+    #endif
+
     #include <avr/io.h>
 
     void system_init(void);

@@ -749,7 +749,6 @@ void matrix_execute(void)
             matrix_copy_to_buffer();
         break;
         case 0x08:	// Copy ASCII character from flash to DISPLAY
-            //matrix_ascii2buffer();
             matrix_ascii_read_operation = 1;
         break;
         case 0x10:	// CLEAR DISPLAY
