@@ -594,7 +594,7 @@ void matrix_test()
         for (unsigned char x=0; x < MATRIX_DOTS_X; x++)
         {
             matrix_display_buffer[y] |= (1<<x);
-            _delay_ms((MATRIX_TEST_DELAY_MS<<2));
+            _delay_ms(MATRIX_TEST_DELAY_MS);
         }
     }
     
