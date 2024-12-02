@@ -124,6 +124,7 @@
     #endif
 
     #include <stdlib.h>
+    #include <ctype.h>
     #include <avr/io.h>
     #include <avr/pgmspace.h>
     #include <avr/eeprom.h>

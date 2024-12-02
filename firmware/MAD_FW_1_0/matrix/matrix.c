@@ -654,7 +654,7 @@ static void matrix_ascii2buffer()
 {
     unsigned char temp[MATRIX_DOTS_X];
 
-    memcpy_P(temp, ascii[(matrix_queue_data - ' ')], sizeof(temp));
+    memcpy_P(temp, ascii[(toupper(matrix_queue_data) - ' ')], sizeof(temp));
     matrix_array2buffer(temp, matrix_display_buffer);
 }
 
