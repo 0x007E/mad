@@ -469,6 +469,34 @@ const __flash unsigned char ascii[][5] = {
         0b0000001,
         0b0000010,
         0b0000000
+    },
+    {   // {
+        0b0001000,
+        0b0110110,
+        0b1000001,
+        0b1000001,
+        0b0000000
+    },
+    {   // |
+        0b0000000,
+        0b0000000,
+        0b1111111,
+        0b0000000,
+        0b0000000
+    },
+    {   // }
+        0b0000000,
+        0b1000001,
+        0b1000001,
+        0b0110110,
+        0b0001000
+    },
+    {   // ~
+        0b0001000,
+        0b0000100,
+        0b0001000,
+        0b0000100,
+        0b0001000
     }
 };
 
@@ -653,8 +681,16 @@ static void matrix_array2buffer(unsigned char *source, volatile unsigned char *d
 static void matrix_ascii2buffer()
 {
     unsigned char temp[MATRIX_DOTS_X];
+    if (matrix_queue_data > 'z')
+    {
+        matrix_queue_data = matrix_queue_data - ('z' - 'a') - 1; 
+    }
+    else
+    {
+        matrix_queue_data = toupper(matrix_queue_data);
+    }
 
-    memcpy_P(temp, ascii[(toupper(matrix_queue_data) - ' ')], sizeof(temp));
+    memcpy_P(temp, ascii[(matrix_queue_data - ' ')], sizeof(temp));
     matrix_array2buffer(temp, matrix_display_buffer);
 }
 
