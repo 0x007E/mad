@@ -681,9 +681,14 @@ static void matrix_array2buffer(unsigned char *source, volatile unsigned char *d
 static void matrix_ascii2buffer()
 {
     unsigned char temp[MATRIX_DOTS_X];
-    if (matrix_queue_data > 'z')
+
+    if ((matrix_queue_data > '~') || (matrix_queue_data < '!'))
     {
-        matrix_queue_data = matrix_queue_data - ('z' - 'a') - 1; 
+        matrix_queue_data = '?';
+    }
+    else if (matrix_queue_data > 'z')
+    {
+        matrix_queue_data = matrix_queue_data - ('z' - 'a') - 1;
     }
     else
     {
