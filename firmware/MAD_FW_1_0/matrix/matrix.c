@@ -521,35 +521,39 @@ static void matrix_row_clear()
     PORTC.OUTCLR = MATRIX_PINC_DR2 | MATRIX_PINC_DR3;
 }
 
-static void matrix_row(volatile unsigned char row)
+volatile unsigned char matrix_display_buffer[MATRIX_DISPLAY_BUFFER_LENGTH];
+
+static void matrix_row(volatile unsigned char column)
 {
     matrix_row_clear();
 
-    switch (row)
+    if(matrix_display_buffer[0] & (1<<column))
     {
-        case 0:
-            PORTB.OUTSET = MATRIX_PINB_DR1;
-        break;
-        case 1:
-            PORTC.OUTSET = MATRIX_PINC_DR2;
-        break;
-        case 2:
-            PORTC.OUTSET = MATRIX_PINC_DR3;
-        break;
-        case 3:
-            PORTB.OUTSET = MATRIX_PINB_DR4;
-        break;
-        case 4:
-            PORTA.OUTSET = MATRIX_PINA_DR5;
-        break;
-        case 5:
-            PORTB.OUTSET = MATRIX_PINB_DR6;
-        break;
-        case 6:
-            PORTA.OUTSET = MATRIX_PINA_DR7;
-        break;
-        default:
-        break;
+        PORTB.OUTSET = MATRIX_PINB_DR1;
+    }
+    if(matrix_display_buffer[1] & (1<<column))
+    {
+        PORTC.OUTSET = MATRIX_PINC_DR2;
+    }
+    if(matrix_display_buffer[2] & (1<<column))
+    {
+        PORTC.OUTSET = MATRIX_PINC_DR3;
+    }
+    if(matrix_display_buffer[3] & (1<<column))
+    {
+        PORTB.OUTSET = MATRIX_PINB_DR4;
+    }
+    if(matrix_display_buffer[4] & (1<<column))
+    {
+        PORTA.OUTSET = MATRIX_PINA_DR5;
+    }
+    if(matrix_display_buffer[5] & (1<<column))
+    {
+        PORTB.OUTSET = MATRIX_PINB_DR6;
+    }
+    if(matrix_display_buffer[6] & (1<<column))
+    {
+        PORTA.OUTSET = MATRIX_PINA_DR7;
     }
 }
 
@@ -559,46 +563,42 @@ static void matrix_column_clear()
     PORTC.OUTSET = MATRIX_PINC_DC1 | MATRIX_PINC_DC4;
 }
 
-volatile unsigned char matrix_display_buffer[MATRIX_DISPLAY_BUFFER_LENGTH];
-
-static void matrix_column(volatile unsigned char row)
+static void matrix_column(volatile unsigned char column)
 {
     matrix_column_clear();
 
-    unsigned char column = matrix_display_buffer[row];
-
-    if(column & (0x01))
+    switch (column)
     {
-        PORTC.OUTCLR = MATRIX_PINC_DC1;
-    }
-    if(column & (0x02))
-    {
-        PORTB.OUTCLR = MATRIX_PINB_DC2;
-    }
-    if(column & (0x04))
-    {
-        PORTB.OUTCLR = MATRIX_PINB_DC3;
-    }
-    if(column & (0x08))
-    {
-        PORTC.OUTCLR = MATRIX_PINC_DC4;
-    }
-    if(column & (0x10))
-    {
-        PORTB.OUTCLR = MATRIX_PINB_DC5;
+        case 0:
+            PORTC.OUTCLR = MATRIX_PINC_DC1;
+        break;
+        case 1:
+            PORTB.OUTCLR = MATRIX_PINB_DC2;
+        break;
+        case 2:
+            PORTB.OUTCLR = MATRIX_PINB_DC3;
+        break;
+        case 3:
+            PORTC.OUTCLR = MATRIX_PINC_DC4;
+        break;
+        case 4:
+            PORTB.OUTCLR = MATRIX_PINB_DC5;
+        break;
+        default:
+        break;
     }
 }
 
-volatile unsigned char matrix_row_position;
+volatile unsigned char matrix_col_position;
 
 void matrix_refresh(void)
 {
-    matrix_column(matrix_row_position);
-    matrix_row(matrix_row_position);
+    matrix_column(matrix_col_position);
+    matrix_row(matrix_col_position);
 
-    if((++matrix_row_position) >= MATRIX_DOTS_Y)
+    if((++matrix_col_position) >= MATRIX_DOTS_X)
     {
-        matrix_row_position = 0;
+        matrix_col_position = 0;
     }
 }
 
