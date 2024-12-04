@@ -79,6 +79,10 @@
         #define MATRIX_PINB_DC5_CTRL PIN2CTRL
     #endif
 
+    // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    // !!! Changes to MATRIX_DOTS_X/Y require an adjustment !!!
+    // !!! of matrix_row() and matrix_column() functions    !!!
+    // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
     #ifndef MATRIX_DOTS_X
         #define MATRIX_DOTS_X 5
     #endif
