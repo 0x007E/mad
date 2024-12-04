@@ -13,6 +13,8 @@
 */
 
 #define F_CPU 20000000UL
+
+// Uncomment to disable signal led
 #define SIGNAL_LED PIN5_bm
 
 #define BAUDRATE 9600UL
@@ -47,8 +49,11 @@ ISR(USART0_RXC_vect)
     matrix_queue(0x08);
     matrix_queue(USART0.RXDATAL);
     matrix_execute();
-
+    
+    // DATA transfer LED
+#ifdef SIGNAL_LED
     PORTA.OUTTGL = SIGNAL_LED;
+#endif
     USART0.STATUS = USART_RXCIF_bm;
 }
 
@@ -57,7 +62,9 @@ ISR(PORTA_PORT_vect)
     sei();	// Allow nested interrupts
 
     // DATA transfer LED
+#ifdef SIGNAL_LED
     PORTA.OUTTGL = SIGNAL_LED;
+#endif
 
     matrix_execute();
 
@@ -79,7 +86,10 @@ int main(void)
     PORTA.DIRCLR = PIN4_bm;				// Set SS to input
     PORTA.PIN4CTRL = PORT_PULLUPEN_bm;	// Enable pullup on SS
     
+    // DATA transfer LED
+#ifdef SIGNAL_LED
     PORTA.DIRSET = SIGNAL_LED;          // Enable signal LED
+#endif
 
     // DISPLAY Update
     matrix_setup();
@@ -92,7 +102,10 @@ int main(void)
     // UART Setup
     if(!(PORTA.IN & PIN4_bm))
     {
+        // DATA transfer LED
+#ifdef SIGNAL_LED
         PORTA.OUTSET = SIGNAL_LED;
+#endif
         _delay_ms(UART_INIT_WAIT_MS);
 
         PORTMUX.CTRLB = PORTMUX_USART0_ALTERNATE_gc;
