@@ -104,7 +104,7 @@
     #endif
 
     #ifndef MATRIX_DISPLAY_REFRESH_RATE
-        #define MATRIX_DISPLAY_REFRESH_RATE 0x0B29
+        #define MATRIX_DISPLAY_REFRESH_RATE 0x09C4
     #endif
 
     #ifndef MATRIX_EEPROM_SIZE
