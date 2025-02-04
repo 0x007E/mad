@@ -17,8 +17,8 @@ The `MAD` project is based on a pcb with an [ATtiny406/ATtiny1606](#additional-i
 | Schematic | [pdf](https://github.com/0x007E/mad/releases/latest/download/schematic.pdf) / [cadlab](https://cadlab.io/project/28600/main/files) | Schematic files |
 | Board | [pdf](https://github.com/0x007E/mad/releases/latest/download/pcb.pdf) / [cadlab](https://cadlab.io/project/28600/main/files) | Board file |
 | Drill | [pdf](https://github.com/0x007E/mad/releases/latest/download/drill.pdf) | Drill file |
-| Gerber | [zip](https://github.com/0x007E/mad/releases/latest/download/kicad.zip) / [tar](https://github.com/0x007E/mad/releases/latest/download/kicad.tar.gz) | Gerber/Drill files |
-| Housing, PCB | [zip](https://github.com/0x007E/mad/releases/latest/download/freecad.zip) / [tar](https://github.com/0x007E/mad/releases/latest/download/freecad.tar.gz) | Housing and PCB (STEP) files     |
+| PCB | [zip](https://github.com/0x007E/mad/releases/latest/download/kicad.zip) / [tar](https://github.com/0x007E/mad/releases/latest/download/kicad.tar.gz) | KiCAD/Gerber/BoM/Drill files |
+| Mechanical | [zip](https://github.com/0x007E/mad/releases/latest/download/freecad.zip) / [tar](https://github.com/0x007E/mad/releases/latest/download/freecad.tar.gz) | FreeCAD/Housing and PCB (STEP) files     |
 | Firmware | [zip](https://github.com/0x007E/mad/releases/latest/download/firmware.zip) / [tar](https://github.com/0x007E/mad/releases/latest/download/firmware.tar.gz) | Firmware for ATtiny406/ATtiny1606 (Display) |
 | Firmware (demo) | [zip](https://github.com/0x007E/mad/releases/latest/download/firmware-demo.zip) / [tar](https://github.com/0x007E/mad/releases/latest/download/firmware-demo.tar.gz) | Test application(s) for ATmega16a |
 
