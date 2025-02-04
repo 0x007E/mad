@@ -682,7 +682,7 @@ static void matrix_ascii2buffer()
 {
     unsigned char temp[MATRIX_DOTS_X];
 
-    if ((matrix_queue_data > '~') || (matrix_queue_data < '!'))
+    if ((matrix_queue_data > '~') || (matrix_queue_data < ' '))
     {
         matrix_queue_data = '?';
     }
