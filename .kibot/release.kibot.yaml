@@ -118,9 +118,8 @@ outputs:
         - layers:
           - layer: B.Cu
           sheet: '(Bottom Copper)'
-          mirror: false
-          monochrome: true
           mirror: true
+          monochrome: true
         - layers:
           - layer: F.Silkscreen
           sheet: '(Top Silkscreen)'
@@ -129,9 +128,8 @@ outputs:
         - layers:
           - layer: B.Silkscreen
           sheet: '(Bottom Silkscreen)'
-          mirror: false
-          monochrome: true
           mirror: true
+          monochrome: true
         - layers:
           - layer: F.Fab
           sheet: '(Top Fabrication)'
@@ -140,9 +138,8 @@ outputs:
         - layers:
           - layer: B.Fab
           sheet: '(Bottom Fabrication)'
-          mirror: false
-          monochrome: true
           mirror: true
+          monochrome: true
         - layers: [ F.Silkscreen, User.Drawings ]
           sheet: '(Top Drawings)'
           mirror: false
