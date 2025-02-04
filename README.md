@@ -54,6 +54,24 @@ The housing has a tolerance of `0.2mm` on each side of the case. So the pcb shou
 
 The `MAD` is powerd with `5V` from an external source. With Jumper `JP1` bridged the `MAD` can be programmed over [UPDI](#additional-information). To enable `UART` mode the `SS (CS)` Pin must be held low (more details on the [dataflow](#dataflow-diagram) diagram) otherwise the `SPI` mode is enabled. In `UART` mode only one display can be driven. The `SI` pin gets `TXD`and the `SO` pin gets `RXD`. The firmware for the display can be downloaded (see the [download section](#downloads)).
 
+``` bash
+#         +-+                                         +----------+      +---------------------+
+#        / /                                          |   U  +---+---+  |                     |
+#      +-+-+-----------------+                        |   S  |  USB  |--+ +-----------------+ |
+#      | JP1                 |                        |   B  +---+---+  | | AVR-Dude        | |
+#      |    MAD - Display    |       +---------+      |   /      |      | | ~~~~~~~~        | |
+#    +-+-+                 +-+-+   +-+-+  U    |      |   U      |      | | ~~~~~           | |
+#    | 1 | VCC         VCC | 1 +---+VCC|  P  +-+-+  +-+-+ A      |      | | ~~~~~~~~~~~~    | |
+#    | 2 | UPDI       UPDI | 2 +---+PDI|  D  |GND+--+GND| R      |      | |                 | |
+#    | 3 | SI           SO | 3 |   +-+-+  I  |VCC+--+VCC| T      |      | +-----------------+ |
+#    | 4 | SCK         SCK | 4 |     |       +---+  +---+ A      |      |                     |
+#    | 5 | SS (CS)      SS | 5 +   +-+-+     |RxD+--+RxD| +------+      | Computer            |
+#    | 6 | GND         GND | 6 +---+GND|     |TxD+--+TxD| |5V/3V3|      |                     |
+#    +-+-+                 +-+-+   +-+-+     +-+-+  +-+-+ +------+      +---------------------+
+#      +---------------------+     | ADAPTER |        +----+-----+
+#                                  +---------+
+```
+
 ## FUSES
 
 | Register  | Value  |
@@ -119,19 +137,25 @@ The `firmware` itself contains some demos how to use the display over `spi`. The
 ### Connection setup
 
 ``` bash
-# ~------------+                  +---------------------+
-# ~            |                  |     MAD - Display   |
-# ~  A       +-+-+              +-+-+                 +-+-+
-# ~  T   [7] | P +- SCK -+      | 1 | VCC         VCC | 1 |
+# ~------------+
+# ~          +-+-+
+# ~          |VCC+------+
+# ~          +-+-+       \        +---------------------+
+# ~            |          \       |     MAD - Display   |
+# ~  A       +-+-+         \    +-+-+                 +-+-+
+# ~  T   [7] | P +- SCK -+  +---+ 1 | VCC         VCC | 1 |
 # ~  M       | O |        \     | 2 | UPDI       UPDI | 2 |
 # ~  E       | R +- MOSI --\----+ 3 | SI           SO | 3 |
 # ~  G       | T +-- SS -+  +---+ 4 | SCK         SCK | 4 |
 # ~  A       | B |       +------+ 5 | SS (CS)      SS | 5 |
-# ~          |   |              | 6 | GND         GND | 6 |
-# ~  1       |   |              +-+-+                 +-+-+
-# ~  6   [0] |   |                |                     |
-# ~  A       +-+-+                +---------------------+
-# ~            |
+# ~          |   |           +--+ 6 | GND         GND | 6 |
+# ~  1       |   |          /   +-+-+                 +-+-+
+# ~  6   [0] |   |         /      |                     |
+# ~  A       +-+-+        /       +---------------------+
+# ~            |         /
+# ~          +-+-+      /
+# ~          |GND+-----+
+# ~          +-+-+
 # ~~~~~~~~~~~~~~ 
 ```
 
