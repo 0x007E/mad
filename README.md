@@ -68,8 +68,8 @@ The `MAD` is powerd with `5V` from an external source. With Jumper `JP1` bridged
 #    | 5 | SS (CS)      SS | 5 +   +-+-+     |RxD+--+RxD| +------+      | Computer            |
 #    | 6 | GND         GND | 6 +---+GND|     |TxD+--+TxD| |5V/3V3|      |                     |
 #    +-+-+                 +-+-+   +-+-+     +-+-+  +-+-+ +------+      +---------------------+
-#      +---------------------+     | ADAPTER |        +----+-----+
-#                                  +---------+
+#      +---------------------+       | ADAPTER |      +----+-----+
+#                                    +---------+
 ```
 
 ## FUSES
