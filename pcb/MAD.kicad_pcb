@@ -268,7 +268,7 @@
       (net 11 "Net-(D1-C1)") (pinfunction "C1") (pintype "passive") (solder_mask_margin 0.102) (tstamp 0feb9447-3228-4f50-b17a-56753ffce6a2))
     (pad "14" thru_hole oval (at 19.05 -7.62 90) (size 2 1.508) (drill 1) (layers "*.Cu" "*.Mask")
       (net 33 "Net-(D1-R2)") (pinfunction "R2") (pintype "passive") (solder_mask_margin 0.102) (tstamp 1937f9e1-f256-4a9c-a4cf-7a1868e041ad))
-    (model "${KIPRJMOD}/lib/TX20.step" hide
+    (model "${KIPRJMOD}/lib/TX20.step"
       (offset (xyz 0 0 9))
       (scale (xyz 1 1 1))
       (rotate (xyz -90 0 90))
