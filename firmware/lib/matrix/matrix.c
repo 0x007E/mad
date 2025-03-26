@@ -17,7 +17,7 @@
 void matrix_init()
 {
     spi_init(SPI_Master, SPI_MSB, SPI_Rising, SPI_Rising);
-
+	spi_select(SPI_Disable);
     // Wait until display initialisation is complete
     _delay_ms(MATRIX_INIT_DELAY_MS);
 }
