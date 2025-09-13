@@ -525,8 +525,6 @@ volatile unsigned char matrix_display_buffer[MATRIX_DISPLAY_BUFFER_LENGTH];
 
 static void matrix_row(volatile unsigned char column)
 {
-    matrix_row_clear();
-
     if(matrix_display_buffer[0] & (1<<column))
     {
         PORTB.OUTSET = MATRIX_PINB_DR1;
@@ -565,8 +563,6 @@ static void matrix_column_clear()
 
 static void matrix_column(volatile unsigned char column)
 {
-    matrix_column_clear();
-
     switch (column)
     {
         case 0:
@@ -593,6 +589,8 @@ volatile unsigned char matrix_col_position;
 
 void matrix_refresh(void)
 {
+	matrix_column_clear();
+	matrix_row_clear();
     matrix_column(matrix_col_position);
     matrix_row(matrix_col_position);
 
