@@ -2,6 +2,8 @@
 
 # `MAD` - Matrix Display
 
+[![Ask DeepWiki](https://deepwiki.com/badge.svg)](https://deepwiki.com/0x007E/mad)
+
 The `MAD` project is based on a pcb with an [ATtiny406/ATtiny1606](#additional-information) and a [Matrix LED Display](#additional-information). It can be used to display data sent over `SPI` or `UART`. The display also implements a small amount of characters from the ASCII table and also has internal space (`EEPROM`) for 16 special characters that can be programmed.
 
 | Experience | Level |
